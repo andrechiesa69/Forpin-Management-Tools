@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Forpin - Management Tools</title>
+
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0b2265;
+      font-family: Arial, sans-serif; -webkit-user-select: none; user-select: none; }
+
+    /* Fotocamera a schermo intero (sfondo) */
+    #cam {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 0; background: linear-gradient(160deg, #0b2265, #3a1c8f);
+    }
+
+    /* Immagini sovrapposte alla fotocamera */
+    #stage {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 3vh; padding: 70px 16px 24px 16px; box-sizing: border-box;
+    }
+
+    .ar-item {
+      display: block; text-decoration: none; -webkit-tap-highlight-color: transparent;
+      opacity: 0; transform: translateY(20px) scale(0.96);
+      animation: appear .7s ease forwards, float 4s ease-in-out 0.8s infinite;
+    }
+    .ar-item img {
+      display: block; max-width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+    }
+    #item-pag1 { animation-delay: .1s, .8s; }
+    #item-pag1 img { max-height: 55vh; max-height: 55dvh; width: auto; }
+    #item-home { animation-delay: .35s, 1.1s; width: min(92vw, 520px); }
+    #item-home img { width: 100%; height: auto; }
+
+    @keyframes appear { to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes float  { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+    #back-btn {
+      position: fixed; top: 15px; left: 15px; z-index: 20;
+      background: #7b2ff7; color: #fff; text-decoration: none;
+      padding: 10px 16px; border-radius: 20px; font-size: 14px; font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <video id="cam" autoplay muted playsinline></video>
+
+  <a id="back-btn" href="index.html">← Indietro</a>
+
+  <div id="stage">
+    <!-- IN ALTO: pag1 -> brochure completa -->
+    <a id="item-pag1" class="ar-item" href="https://online.fliphtml5.com/kyszr/Brochure-completa/">
+      <img src="./pag1.png" alt="Brochure completa">
+    </a>
+
+    <!-- SOTTO: home-project -> pagina del corso -->
+    <a id="item-home" class="ar-item" href="https://forpin.it/corsi/project-management-avanzato-2/">
+      <img src="./home-project.jpg" alt="Project Management Avanzato">
+    </a>
+  </div>
+
+  <script>
+    // Avvia la fotocamera posteriore (iPhone e Android). Se viene negata, resta lo sfondo colorato.
+    (async function () {
+      const video = document.getElementById('cam');
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: 'environment' } },
+          audio: false
+        });
+        video.srcObject = stream;
+        await video.play();
+      } catch (err) {
+        console.warn('Fotocamera non disponibile:', err);
+      }
+    })();
+  </script>
+
+</body>
+</html>
