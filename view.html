@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Forpin</title>
+
+  <script>
+    // Pagine consentite (scelte dalla pagina con le due immagini)
+    var PAGES = {
+      brochure: "https://online.fliphtml5.com/kyszr/Brochure-completa/",
+      corso:    "https://forpin.it/corsi/project-management-avanzato-2/"
+    };
+    var key = new URLSearchParams(location.search).get('p');
+    var url = PAGES[key];
+    if (!url) { location.replace('index.html'); }
+  </script>
+
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #ffffff; font-family: Arial, sans-serif; }
+
+    #bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      height: 44px; padding-top: env(safe-area-inset-top, 0px);
+      box-sizing: content-box;
+      display: flex; align-items: center; justify-content: space-between;
+      padding-left: 10px; padding-right: 10px;
+      background: #0b2265; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    #back {
+      background: #7b2ff7; color: #fff; text-decoration: none;
+      font-size: 13px; font-weight: bold;
+      padding: 8px 14px; border-radius: 16px;
+    }
+    #ext {
+      color: #ffffff; text-decoration: none; font-size: 12px; opacity: 0.85;
+    }
+
+    #frame {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      top: calc(44px + env(safe-area-inset-top, 0px));
+      width: 100%; height: calc(100% - 44px - env(safe-area-inset-top, 0px));
+      border: 0; background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="bar">
+    <a id="back" href="ar.html">← Torna alla scelta</a>
+    <a id="ext" href="#" target="_blank" rel="noopener">Apri nel browser ↗</a>
+  </div>
+
+  <iframe id="frame" allow="fullscreen" allowfullscreen></iframe>
+
+  <script>
+    if (url) {
+      document.getElementById('frame').src = url;
+      document.getElementById('ext').href = url;
+    }
+  </script>
+
+</body>
+</html>
