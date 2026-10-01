@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORPIN - Scuola di Formazione</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333333;
+    }
+
+    /* --- HEADER FORPIN --- */
+    .header-container {
+      background-color: #0b2265;
+      color: #ffffff;
+      width: 100%;
+    }
+
+    .top-bar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .logo-sphere {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff 15%, #5a8bd8 45%, #0b2265 85%);
+    }
+
+    .logo-text {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .top-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    .top-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .top-icons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: 10px;
+    }
+
+    .main-nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8px 20px 14px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .main-nav a {
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* --- SEZIONE HERO BANNER --- */
+    .hero {
+      position: relative;
+      background-color: #0b2265;
+      color: white;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 65%;
+      height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #0b2265 0%, #0b2265 45%, rgba(11, 34, 101, 0.75) 65%, rgba(11, 34, 101, 0.1) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hero-text-block {
+      max-width: 480px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 25px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      background-color: #7b2ff7;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: background-color 0.2s;
+    }
+
+    .btn-hero:hover {
+      background-color: #6a1fe0;
+    }
+
+    /* --- SEZIONE CATALOGO CORSI --- */
+    .catalogo-section {
+      background-color: #ffffff;
+      padding: 60px 20px;
+    }
+
+    .catalogo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .catalogo-title {
+      color: #0b2265;
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .catalogo-subtitle {
+      color: #666666;
+      font-size: 16px;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      line-height: 1.5;
+    }
+
+    .corsi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .corso-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      background: #ffffff;
+      transition: transform 0.2s;
+    }
+
+    .corso-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .corso-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .top-menu, .main-nav {
+        display: none;
+      }
+      .corsi-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-bg {
+        width: 100%;
+        opacity: 0.3;
+      }
+      .hero-overlay {
+        background: #0b2265;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER FORPIN -->
+  <header class="header-container">
+    <div class="top-bar">
+      <a href="#" class="logo-container">
+        <div class="logo-sphere"></div>
+        <span class="logo-text">FORPIN</span>
+      </a>
+
+      <div class="top-menu">
+        <a href="#">Chi siamo</a>
+        <a href="#">Podcast Forpin for AI</a>
+        <a href="#">News</a>
+        <a href="#">Contatti</a>
+        <div class="top-icons">
+          <a href="#"><i class="far fa-newspaper"></i></a>
+          <a href="#"><i class="fas fa-search"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <a href="#">CATALOGO CORSI <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <a href="#">PER LE AZIENDE <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+      <a href="#">PER LE PERSONE <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
+    </nav>
+  </header>
+
+  <!-- SEZIONE HERO BANNER -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-text-block">
+        <h1>Clicca il bottone sotto e inquadra la brochure.</h1>
+        <!-- BOTTONE: apre la pagina AR -->
+        <a href="ar.html" class="btn-hero" onclick="try{sessionStorage.setItem('fromLanding','1')}catch(e){}">Management Tools</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE CATALOGO CORSI IN EVIDENZA -->
+  <section class="catalogo-section">
+    <div class="catalogo-container">
+      <h2 class="catalogo-title">Catalogo Corsi In Evidenza</h2>
+      <p class="catalogo-subtitle">Percorsi formativi progettati per sviluppare le competenze più richieste dalle imprese locali.</p>
+
+      <div class="corsi-grid">
+        <div class="corso-card">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Corso 1">
+        </div>
+        <div class="corso-card">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Corso 2">
+        </div>
+        <div class="corso-card">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="Corso 3">
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
